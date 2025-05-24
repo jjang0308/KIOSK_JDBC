@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import database.JDBCUtil;
+import config.JDBCUtil;
 import domain.CategoryVO;
 
 class CategoryDaoImplTest {
