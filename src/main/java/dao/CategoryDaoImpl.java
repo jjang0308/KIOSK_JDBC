@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import config.JDBCUtil;
 import domain.CategoryVO;
 public class CategoryDaoImpl implements CategoryDao{
