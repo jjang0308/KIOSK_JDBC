@@ -1,3 +1,4 @@
+
 package dao;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +18,7 @@ class CategoryDaoImplTest {
 	@Test
 	@DisplayName("jdbc_ex에 접속한다.(자동 닫기)")
 	public void testConnection2() throws SQLException {
-		try(Connection conn = JDBCUtil.getConnection()){
+		try (Connection conn = JDBCUtil.getConnection()) {
 			System.out.println("DB 연결 성공");
 		}
 	}
