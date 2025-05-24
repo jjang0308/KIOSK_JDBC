@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import config.JDBCUtil;
 import domain.CategoryVO;
+
 public class CategoryDaoImpl implements CategoryDao{
 
 	Connection conn = JDBCUtil.getConnection();
