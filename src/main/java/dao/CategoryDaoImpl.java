@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import database.JDBCUtil;
+import config.JDBCUtil;
 import domain.CategoryVO;
 public class CategoryDaoImpl implements CategoryDao{
 
@@ -37,7 +36,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	//categoryVOList 변환 mapper
 	private CategoryVO map(ResultSet rs) throws SQLException {
 		return CategoryVO.builder()
-			.id(rs.getLong("category_id"))
+			.category_id(rs.getLong("category_id"))
 			.name(rs.getString("name"))
 			.build();
 	}
