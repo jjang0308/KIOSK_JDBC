@@ -15,14 +15,21 @@ public class OrderItemDaoImpl implements OrderItemDao {
     Connection conn = JDBCUtil.getConnection();
 
     public OrderItemVO map(ResultSet rs) throws SQLException {
-        OrderItemVO orderItemVO = new OrderItemVO();
-        orderItemVO.setPriceAtOrder(rs.getInt("price_at_order"));
-        orderItemVO.setFoodName(rs.getString("food_name"));
-        orderItemVO.setSubTotal(rs.getInt("subtotal"));
-        orderItemVO.setQuantity(rs.getInt("quantity"));
-        orderItemVO.setOrderId(rs.getLong("order_id"));
-        orderItemVO.setFoodId(rs.getLong("food_id"));
-        return orderItemVO;
+//        OrderItemVO orderItemVO = new OrderItemVO();
+//        orderItemVO.setPriceAtOrder(rs.getInt("price_at_order"));
+//        orderItemVO.setFoodName(rs.getString("food_name"));
+//        orderItemVO.setSubTotal(rs.getInt("subtotal"));
+//        orderItemVO.setQuantity(rs.getInt("quantity"));
+//        orderItemVO.setOrderId(rs.getLong("order_id"));
+//        orderItemVO.setFoodId(rs.getLong("food_id"));
+        return OrderItemVO.builder()
+                .priceAtOrder(rs.getInt("price_at_order"))
+                .foodName(rs.getString("food_name"))
+                .subTotal(rs.getInt("subtotal"))
+                .quantity(rs.getInt("quantity"))
+                .orderId(rs.getLong("order_id"))
+                .foodId(rs.getLong("food_id"))
+                .build();
     }
 
     @Override
