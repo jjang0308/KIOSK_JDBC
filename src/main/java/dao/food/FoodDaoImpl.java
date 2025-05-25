@@ -21,15 +21,17 @@ public class FoodDaoImpl implements FoodDao{
 			pstmt.setString(1, foodVO.getName());
 			pstmt.setInt(2, foodVO.getPrice());
 			pstmt.setLong(3, foodVO.getCategory_id());
+			pstmt.executeUpdate();
 		} catch (SQLException e){
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 
+	//카테고리별 음식 목록 조회
 	@Override
 	public List<FoodVO> getFoodListByCategory(Long categoryId) {
 		List<FoodVO> foodVOList = new ArrayList<>();
-		String sql = "select * from food_tbl where category_id = ? and status = TRUE order by food_id";
+		String sql = "select * from food_tbl where category_id = ? order by food_id";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery()) {
 			while (rs.next()) {
@@ -37,9 +39,35 @@ public class FoodDaoImpl implements FoodDao{
 				foodVOList.add(foodVO);
 			}
 		} catch (SQLException e){
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return foodVOList;
+	}
+
+	//음식 단일 조회
+	@Override
+	public FoodVO getFood(Long foodId) {
+		FoodVO foodVO;
+		String sql = "select name from food_tbl where food_id = ?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery()) {
+			foodVO = map(rs);
+		} catch (SQLException e){
+			throw new RuntimeException(e);
+		}
+		return foodVO;
+	}
+
+	//음식 삭제
+	//필요시 사용
+	@Override
+	public void delete(Long foodId) {
+		String sql = "delete from food_tbl where food_id = ?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery()) {
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private FoodVO map(ResultSet rs) throws SQLException {

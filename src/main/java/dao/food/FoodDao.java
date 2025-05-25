@@ -8,6 +8,6 @@ public interface FoodDao {
 	void insert(FoodVO foodVO);
 	List<FoodVO> getFoodListByCategory(Long categoryId);
 
-	// void update(FoodVO foodVO);
-	// void delete(Long foodId);
+	FoodVO getFood(Long foodId);
+	void delete(Long foodId);
 }
