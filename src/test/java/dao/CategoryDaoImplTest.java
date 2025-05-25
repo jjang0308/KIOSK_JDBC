@@ -33,9 +33,9 @@ class CategoryDaoImplTest {
 		assertFalse(categoryVOList.isEmpty());
 
 		for (CategoryVO category : categoryVOList) {
-			assertNotNull(category.getId());
+			assertNotNull(category.getCategory_id());
 			assertNotNull(category.getName());
-			System.out.println(category.getId() + ". " + category.getName());
+			System.out.println(category.getCategory_id() + ". " + category.getName());
 		}
 	}
 }
