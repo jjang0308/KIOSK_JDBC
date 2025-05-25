@@ -1,4 +1,7 @@
 package dao.order;
 
-public class OrderDao {
+import domain.OrderVO;
+
+public interface OrderDao {
+    void create(OrderVO order);
 }

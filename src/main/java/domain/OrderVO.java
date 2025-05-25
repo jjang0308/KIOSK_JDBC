@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class OrderVO {
     private Integer orderId;
-    private LocalDateTime orderItem;
+    private LocalDateTime orderTime;
     private Integer totalPrice;
     private String orderType;
-    private Integer paymentId;
+    private Long paymentId;
     private String phoneNum;
 }
