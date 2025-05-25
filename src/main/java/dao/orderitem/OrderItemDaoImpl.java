@@ -1,7 +1,7 @@
 package dao.orderitem;
 
 import config.JDBCUtil;
-import domain.OrderItem;
+import domain.OrderItemVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,33 +9,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderItemDaoImpl implements OrderItemDao {
 
     Connection conn = JDBCUtil.getConnection();
 
-    public OrderItem map(ResultSet rs) throws SQLException {
-        OrderItem orderItem = new OrderItem();
-        orderItem.setPriceAtOrder(rs.getInt("price_at_order"));
-        orderItem.setFoodName(rs.getString("food_name"));
-        orderItem.setSubTotal(rs.getInt("subtotal"));
-        orderItem.setQuantity(rs.getInt("quantity"));
-        orderItem.setOrderId(rs.getLong("order_id"));
-        orderItem.setFoodId(rs.getLong("food_id"));
-        return orderItem;
+    public OrderItemVO map(ResultSet rs) throws SQLException {
+        OrderItemVO orderItemVO = new OrderItemVO();
+        orderItemVO.setPriceAtOrder(rs.getInt("price_at_order"));
+        orderItemVO.setFoodName(rs.getString("food_name"));
+        orderItemVO.setSubTotal(rs.getInt("subtotal"));
+        orderItemVO.setQuantity(rs.getInt("quantity"));
+        orderItemVO.setOrderId(rs.getLong("order_id"));
+        orderItemVO.setFoodId(rs.getLong("food_id"));
+        return orderItemVO;
     }
 
     @Override
-    public void insertOrderItem(OrderItem orderItem) {
+    public void insertOrderItem(OrderItemVO orderItemVO) {
         String sql = "insert into order_item_tbl(price_at_order, food_name, subtotal, quantity, order_id, food_id) values (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, orderItem.getPriceAtOrder());
-            pstmt.setString(2, orderItem.getFoodName());
-            pstmt.setInt(3, orderItem.getSubTotal());
-            pstmt.setInt(4, orderItem.getQuantity());
-            pstmt.setLong(5, orderItem.getOrderId());
-            pstmt.setLong(6, orderItem.getFoodId());
+            pstmt.setInt(1, orderItemVO.getPriceAtOrder());
+            pstmt.setString(2, orderItemVO.getFoodName());
+            pstmt.setInt(3, orderItemVO.getSubTotal());
+            pstmt.setInt(4, orderItemVO.getQuantity());
+            pstmt.setLong(5, orderItemVO.getOrderId());
+            pstmt.setLong(6, orderItemVO.getFoodId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -43,16 +42,16 @@ public class OrderItemDaoImpl implements OrderItemDao {
     }
 
     @Override
-    public List<OrderItem> getAllOrderItems() {
+    public List<OrderItemVO> getAllOrderItems() {
         String sql = "select * from order_item_tbl";
-        List<OrderItem> orderItemList = new ArrayList<>();
+        List<OrderItemVO> orderItemVOList = new ArrayList<>();
         try (PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()){
-                OrderItem orderItem = map(rs);
-                orderItemList.add(orderItem);
+                OrderItemVO orderItemVO = map(rs);
+                orderItemVOList.add(orderItemVO);
             }
-            return orderItemList;
+            return orderItemVOList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

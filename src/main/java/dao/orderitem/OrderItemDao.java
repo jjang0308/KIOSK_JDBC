@@ -1,15 +1,14 @@
 package dao.orderitem;
 
-import domain.OrderItem;
+import domain.OrderItemVO;
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderItemDao {
-    void insertOrderItem(OrderItem orderItem);
+    void insertOrderItem(OrderItemVO orderItemVO);
 
 //    Optional<OrderItem> getOrderItem(Long id);
 
-    List<OrderItem> getAllOrderItems();
+    List<OrderItemVO> getAllOrderItems();
 
 //    void updateOrderItem(OrderItem orderItem);
 //
