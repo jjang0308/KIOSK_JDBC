@@ -8,7 +8,7 @@ public interface OrderItemDao {
 
 //    Optional<OrderItem> getOrderItem(Long id);
 
-    List<OrderItemVO> getAllOrderItems();
+    List<OrderItemVO> getAllOrderItems(Long id);
 
 //    void updateOrderItem(OrderItem orderItem);
 //
