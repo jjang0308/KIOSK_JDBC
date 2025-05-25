@@ -16,7 +16,7 @@ public class FoodDaoImpl implements FoodDao{
 	//화면 구성에는 없지만, 새 메뉴 추가 or 메뉴명이나 가격 변경 시 사용
 	@Override
 	public void insert(FoodVO foodVO) {
-		String sql = "insert into food_tbl(name, price, category_id)";
+		String sql = "insert into food_tbl(name, price, category_id) values (?, ?, ?)";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, foodVO.getName());
 			pstmt.setInt(2, foodVO.getPrice());
@@ -32,11 +32,13 @@ public class FoodDaoImpl implements FoodDao{
 	public List<FoodVO> getFoodListByCategory(Long categoryId) {
 		List<FoodVO> foodVOList = new ArrayList<>();
 		String sql = "select * from food_tbl where category_id = ? order by food_id";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery()) {
-			while (rs.next()) {
-				FoodVO foodVO = map(rs);
-				foodVOList.add(foodVO);
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setLong(1, categoryId);
+			try(ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					FoodVO foodVO = map(rs);
+					foodVOList.add(foodVO);
+				}
 			}
 		} catch (SQLException e){
 			throw new RuntimeException(e);
@@ -48,10 +50,16 @@ public class FoodDaoImpl implements FoodDao{
 	@Override
 	public FoodVO getFood(Long foodId) {
 		FoodVO foodVO;
-		String sql = "select name from food_tbl where food_id = ?";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery()) {
-			foodVO = map(rs);
+		String sql = "select * from food_tbl where food_id = ?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setLong(1, foodId);
+			try(ResultSet rs = pstmt.executeQuery()) {
+				if(rs.next()){
+					foodVO = map(rs);
+				} else {
+					throw new RuntimeException("food 단일 조회 실패");
+				}
+			}
 		} catch (SQLException e){
 			throw new RuntimeException(e);
 		}
@@ -63,8 +71,9 @@ public class FoodDaoImpl implements FoodDao{
 	@Override
 	public void delete(Long foodId) {
 		String sql = "delete from food_tbl where food_id = ?";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery()) {
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setLong(1, foodId);
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
