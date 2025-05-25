@@ -36,7 +36,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	//categoryVOList 변환 mapper
 	private CategoryVO map(ResultSet rs) throws SQLException {
 		return CategoryVO.builder()
-			.id(rs.getLong("category_id"))
+			.category_id(rs.getLong("category_id"))
 			.name(rs.getString("name"))
 			.build();
 	}

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CategoryVO {
-	private Long id;
+	private Long category_id;
 	private String name;
 }
