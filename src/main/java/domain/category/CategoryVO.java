@@ -1,4 +1,4 @@
-package domain;
+package domain.category;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
