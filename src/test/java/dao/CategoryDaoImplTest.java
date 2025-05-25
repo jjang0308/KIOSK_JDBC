@@ -10,7 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import config.JDBCUtil;
-import domain.CategoryVO;
+import dao.category.CategoryDaoImpl;
+import domain.category.CategoryVO;
 
 class CategoryDaoImplTest {
 	@Test
