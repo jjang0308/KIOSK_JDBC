@@ -31,8 +31,4 @@ public class MembershipServiceImpl implements MembershipService {
         }
     }
 
-    @Override
-    public List<MembershipVO> getAllMembers() {
-        return membershipDao.getAllMembers();
-    }
 }
