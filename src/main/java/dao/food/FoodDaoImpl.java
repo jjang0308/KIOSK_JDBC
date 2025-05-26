@@ -12,21 +12,6 @@ import domain.food.FoodVO;
 
 public class FoodDaoImpl implements FoodDao{
 	Connection conn = JDBCUtil.getConnection();
-
-	//화면 구성에는 없지만, 새 메뉴 추가 or 메뉴명이나 가격 변경 시 사용
-	@Override
-	public void insert(FoodVO foodVO) {
-		String sql = "insert into food_tbl(name, price, category_id) values (?, ?, ?)";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, foodVO.getName());
-			pstmt.setInt(2, foodVO.getPrice());
-			pstmt.setLong(3, foodVO.getCategory_id());
-			pstmt.executeUpdate();
-		} catch (SQLException e){
-			throw new RuntimeException(e);
-		}
-	}
-
 	//카테고리별 음식 목록 조회
 	@Override
 	public List<FoodVO> getFoodListByCategory(Long categoryId) {
@@ -64,19 +49,6 @@ public class FoodDaoImpl implements FoodDao{
 			throw new RuntimeException(e);
 		}
 		return foodVO;
-	}
-
-	//음식 삭제
-	//필요시 사용
-	@Override
-	public void delete(Long foodId) {
-		String sql = "delete from food_tbl where food_id = ?";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setLong(1, foodId);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	private FoodVO map(ResultSet rs) throws SQLException {
