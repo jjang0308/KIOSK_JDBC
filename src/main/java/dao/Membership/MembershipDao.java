@@ -1,4 +1,4 @@
-package dao;
+package dao.Membership;
 
 import domain.MembershipVO;
 

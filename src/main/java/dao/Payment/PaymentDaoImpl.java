@@ -1,4 +1,4 @@
-package dao;
+package dao.Payment;
 
 import domain.PaymentVO;
 import java.sql.*;

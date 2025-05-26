@@ -1,4 +1,4 @@
-package service;
+package service.Membership;
 
 import domain.MembershipVO;
 import java.util.List;

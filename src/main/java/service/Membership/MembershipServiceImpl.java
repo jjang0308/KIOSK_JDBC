@@ -1,6 +1,6 @@
-package service;
+package service.Membership;
 
-import dao.MembershipDao;
+import dao.Membership.MembershipDao;
 import domain.MembershipVO;
 
 import java.util.List;

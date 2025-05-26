@@ -1,15 +1,15 @@
 package app;
 
-import dao.MembershipDao;
-import dao.MembershipDaoImpl;
-import dao.PaymentDao;
-import dao.PaymentDaoImpl;
-import database.JDBCUtil;
+import dao.Membership.MembershipDao;
+import dao.Membership.MembershipDaoImpl;
+import dao.Payment.PaymentDao;
+import dao.Payment.PaymentDaoImpl;
+import config.JDBCUtil;
 import domain.MembershipVO;
-import service.MembershipService;
-import service.MembershipServiceImpl;
-import service.PaymentService;
-import service.PaymentServiceImpl;
+import service.Membership.MembershipService;
+import service.Membership.MembershipServiceImpl;
+import service.Payment.PaymentService;
+import service.Payment.PaymentServiceImpl;
 
 import java.sql.Connection;
 import java.util.List;
