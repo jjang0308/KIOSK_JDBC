@@ -1,4 +1,4 @@
-package domain;
+package domain.Payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

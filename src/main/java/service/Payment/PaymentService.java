@@ -1,6 +1,6 @@
 package service.Payment;
 
-import domain.PaymentVO;
+import domain.Payment.PaymentVO;
 import java.util.List;
 
 public interface PaymentService {
