@@ -49,16 +49,18 @@ public class OrderItemDaoImpl implements OrderItemDao {
     }
 
     @Override
-    public List<OrderItemVO> getAllOrderItems() {
-        String sql = "select * from order_item_tbl";
+    public List<OrderItemVO> getAllOrderItems(Long id) {
+        String sql = "select * from order_item_tbl where id = ?";
         List<OrderItemVO> orderItemVOList = new ArrayList<>();
-        try (PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            while (rs.next()){
-                OrderItemVO orderItemVO = map(rs);
-                orderItemVOList.add(orderItemVO);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    OrderItemVO orderItemVO = map(rs);
+                    orderItemVOList.add(orderItemVO);
+                }
+                return orderItemVOList;
             }
-            return orderItemVOList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -79,8 +81,6 @@ public class OrderItemDaoImpl implements OrderItemDao {
 //        }
 //        return Optional.empty();
 //    }
-
-
 
 
 //    @Override
