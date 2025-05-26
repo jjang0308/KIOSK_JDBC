@@ -1,6 +1,6 @@
 package service.Membership;
 
-import domain.MembershipVO;
+import domain.Membership.MembershipVO;
 import java.util.List;
 
 public interface MembershipService {

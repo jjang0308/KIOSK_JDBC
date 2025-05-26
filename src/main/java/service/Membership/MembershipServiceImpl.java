@@ -1,7 +1,7 @@
 package service.Membership;
 
 import dao.Membership.MembershipDao;
-import domain.MembershipVO;
+import domain.Membership.MembershipVO;
 
 import java.util.List;
 
