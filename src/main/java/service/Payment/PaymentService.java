@@ -1,4 +1,4 @@
-package service;
+package service.Payment;
 
 import domain.PaymentVO;
 import java.util.List;

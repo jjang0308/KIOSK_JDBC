@@ -1,6 +1,6 @@
-package service;
+package service.Payment;
 
-import dao.PaymentDao;
+import dao.Payment.PaymentDao;
 import domain.PaymentVO;
 
 import java.util.List;
