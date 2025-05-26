@@ -6,16 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderVO {
-    private Integer orderId;
+    private Long orderId;
     private LocalDateTime orderTime;
-    private Integer totalPrice;
+    private int totalPrice;
     private String orderType;
     private Long paymentId;
     private String phoneNum;
+
+    private List<OrderItemVO> orderItemList;
 }
