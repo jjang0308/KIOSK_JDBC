@@ -1,4 +1,4 @@
-package dao;
+package dao.category;
 
 import static org.junit.jupiter.api.Assertions.*;
 
