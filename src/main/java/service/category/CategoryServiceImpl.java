@@ -1,19 +1,24 @@
 package service.category;
 
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import dao.category.CategoryDao;
 import domain.category.CategoryVO;
 import lombok.RequiredArgsConstructor;
+import service.category.context.CategoryContext;
 
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService{
 	private final CategoryDao categoryDao;
+	private final CategoryContext categoryContext;
 	private final int CONSOLE_WIDTH = 30;
 	@Override
 	public void printCategories() {
 		List<CategoryVO> categoryVOList =categoryDao.getCategories();
 		printCategories(categoryVOList);
+		inputCategoryId(categoryVOList);
 	}
 
 	private void printCategories(List<CategoryVO> categoryVOList) {
@@ -25,5 +30,26 @@ public class CategoryServiceImpl implements CategoryService{
 			System.out.println();
 		}
 		System.out.printf("6.뒤로가기" + "%" + CONSOLE_WIDTH + "s\n", "7.담은상품 결제하기");
+	}
+
+	private void inputCategoryId(List<CategoryVO> categoryVOList) {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			try {
+				String input = sc.nextLine();
+				Long inputCategoryId = Long.parseLong(input);
+
+				boolean exists = categoryVOList.stream()
+					.anyMatch(vo -> vo.getCategory_id().equals(inputCategoryId));
+				if (!exists) {
+					System.out.println("존재하지 않는 카테고리 번호입니다. 다시 입력해주세요.");
+					continue;
+				}
+				categoryContext.setCategoryId(inputCategoryId);
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해야 합니다.");
+			}
+		}
 	}
 }
