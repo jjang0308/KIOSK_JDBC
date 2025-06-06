@@ -1,6 +1,6 @@
 package dao.Membership;
 
-import domain.MembershipVO;
+import domain.Membership.MembershipVO;
 
 
 import java.util.*;

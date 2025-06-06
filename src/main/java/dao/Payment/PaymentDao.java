@@ -1,6 +1,6 @@
 package dao.Payment;
 
-import domain.PaymentVO;
+import domain.Payment.PaymentVO;
 import java.util.List;
 
 public interface PaymentDao {
