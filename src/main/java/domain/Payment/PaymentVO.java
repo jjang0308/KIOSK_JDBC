@@ -1,4 +1,4 @@
-package domain;
+package domain.Payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MembershipVO {
-    private String phone_num;
-    private int point;
-    private String nickname;
+public class PaymentVO {
+    private long payment_id;
+    private String payment_type;
 
 }

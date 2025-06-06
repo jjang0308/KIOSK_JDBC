@@ -1,7 +1,6 @@
 package service.Membership;
 
-import domain.MembershipVO;
-import java.util.List;
+import domain.Membership.MembershipVO;
 
 public interface MembershipService {
     void joinMember(MembershipVO member);              // 회원 등록

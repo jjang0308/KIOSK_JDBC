@@ -5,7 +5,7 @@ import dao.Membership.MembershipDaoImpl;
 import dao.Payment.PaymentDao;
 import dao.Payment.PaymentDaoImpl;
 import config.JDBCUtil;
-import domain.MembershipVO;
+import domain.Membership.MembershipVO;
 import service.Membership.MembershipService;
 import service.Membership.MembershipServiceImpl;
 import service.Payment.PaymentService;

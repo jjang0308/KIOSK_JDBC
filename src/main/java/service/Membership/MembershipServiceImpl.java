@@ -1,7 +1,7 @@
 package service.Membership;
 
 import dao.Membership.MembershipDao;
-import domain.MembershipVO;
+import domain.Membership.MembershipVO;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Scanner;
