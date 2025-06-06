@@ -1,35 +1,48 @@
 package service.Payment;
 
+package service.Payment;
+
 import dao.Payment.PaymentDao;
-import domain.PaymentVO;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Scanner;
 
+@RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentDao paymentDao;
-
-    public PaymentServiceImpl(PaymentDao paymentDao) {
-        this.paymentDao = paymentDao;
-    }
-
-    @Override
-    public void registerPayment(PaymentVO payment) {
-        paymentDao.insert(payment);
-    }
-
-    @Override
-    public PaymentVO getPaymentById(long id) {
-        // 구현이 필요한 경우 dao에 해당 메서드를 추가해야 함
-        throw new UnsupportedOperationException("getPaymentById는 DAO에서 구현되지 않음");
-    }
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public List<String> getAllPaymentTypes() {
         return paymentDao.getPayment_type();
     }
 
-    @Override
-    public int getTotalPaymentCount() {
-        return paymentDao.getTotalCount();
+    // 사용자 입력 흐름 포함: 결제 수단 선택
+    public String choosePaymentType() {
+        List<String> paymentTypes = getAllPaymentTypes();
+
+        System.out.println("\n[결제 수단 선택]");
+        for (int i = 0; i < paymentTypes.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, paymentTypes.get(i));
+        }
+
+        int choice = 0;
+        while (true) {
+            System.out.print("결제 수단 번호를 선택하세요: ");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice >= 1 && choice <= paymentTypes.size()) {
+                    break;
+                } else {
+                    System.out.println("유효한 번호를 입력해주세요.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자만 입력해주세요.");
+            }
+        }
+
+        return paymentTypes.get(choice - 1);
     }
 }
+
