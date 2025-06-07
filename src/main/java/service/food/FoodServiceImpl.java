@@ -3,14 +3,14 @@ package service.food;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.food.FoodDaoImpl;
+import dao.food.FoodDao;
 import domain.food.FoodVO;
 import lombok.RequiredArgsConstructor;
 import service.category.context.CategoryContext;
 
 @RequiredArgsConstructor
 public class FoodServiceImpl implements FoodService{
-	private final FoodDaoImpl foodDao;
+	private final FoodDao foodDao;
 	private final CategoryContext categoryContext;
 	private final int CONSOLE_WIDTH = 30;
 	@Override
