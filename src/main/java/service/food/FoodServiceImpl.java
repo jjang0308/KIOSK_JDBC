@@ -22,15 +22,13 @@ public class FoodServiceImpl implements FoodService{
 
 	private void printFoodList(List<FoodVO> foodVOList){
 		String info = "번호를 입력하면 선택됩니다.";
-		long lastIdx = 0L;
 		System.out.printf("단품 선택" + "%" + CONSOLE_WIDTH + "s\n", info);
 		System.out.println();
 		for (FoodVO foodVO : foodVOList) {
 			System.out.println(foodVO.getCategory_id() + "."  + foodVO.getName() + "(" + foodVO.getPrice() + "원)");
 			System.out.println();
-			lastIdx = foodVO.getCategory_id();
 		}
-		System.out.println(lastIdx + 1 + ".뒤로가기");
+		System.out.println((foodVOList.size() + 1) + ".뒤로가기");
 	}
 
 	private void inputFoodId(List<FoodVO> foodVOList){
