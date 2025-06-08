@@ -2,6 +2,7 @@ package service.category;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import dao.category.CategoryDao;
@@ -39,13 +40,15 @@ public class CategoryServiceImpl implements CategoryService{
 				String input = sc.nextLine();
 				Long inputCategoryId = Long.parseLong(input);
 
-				boolean exists = categoryVOList.stream()
-					.anyMatch(vo -> vo.getCategory_id().equals(inputCategoryId));
-				if (!exists) {
+				Optional<CategoryVO> matched = categoryVOList.stream()
+					.filter(vo -> vo.getCategory_id().equals(inputCategoryId))
+					.findFirst();
+				if (matched.isEmpty()) {
 					System.out.println("존재하지 않는 카테고리 번호입니다. 다시 입력해주세요.");
 					continue;
 				}
-				categoryContext.setCategoryId(inputCategoryId);
+				categoryContext.setCategoryId(matched.get().getCategory_id());
+				categoryContext.setCategoryName(matched.get().getName());
 				break;
 			} catch (NumberFormatException e) {
 				System.out.println("숫자만 입력해야 합니다.");
