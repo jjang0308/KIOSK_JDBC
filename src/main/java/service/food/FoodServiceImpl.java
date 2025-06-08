@@ -3,9 +3,7 @@ package service.food;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
 import dao.food.FoodDao;
-import domain.category.CategoryVO;
 import domain.food.FoodVO;
 import lombok.RequiredArgsConstructor;
 import service.category.context.CategoryContext;
