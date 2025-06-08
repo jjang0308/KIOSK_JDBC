@@ -1,13 +1,12 @@
 package service.category;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
 import dao.category.CategoryDao;
 import domain.category.CategoryVO;
 import lombok.RequiredArgsConstructor;
+
 import service.category.context.CategoryContext;
 
 @RequiredArgsConstructor
