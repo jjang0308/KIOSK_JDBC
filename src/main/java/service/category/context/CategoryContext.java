@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class CategoryContext {
 	private Long categoryId;
+	private String categoryName;
 }
