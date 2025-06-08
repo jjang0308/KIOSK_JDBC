@@ -22,7 +22,7 @@ public class FoodServiceImpl implements FoodService{
 
 	private void printFoodList(List<FoodVO> foodVOList){
 		String info = "번호를 입력하면 선택됩니다.";
-		System.out.printf("단품 선택" + "%" + CONSOLE_WIDTH + "s\n", info);
+		System.out.printf(categoryContext.getCategoryName() + " 선택" + "%" + CONSOLE_WIDTH + "s\n", info);
 		System.out.println();
 		for (FoodVO foodVO : foodVOList) {
 			System.out.println(foodVO.getCategory_id() + "."  + foodVO.getName() + "(" + foodVO.getPrice() + "원)");
